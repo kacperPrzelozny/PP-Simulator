@@ -5,8 +5,9 @@ internal class Program
     static void Main(string[] args)
     {
         Console.WriteLine("Starting Simulator!\n");
-        Lab4a();
-        Lab4b();
+        //Lab4a();
+        //Lab4b();
+        Lab5a();
     }
 
     static void Lab4a()
@@ -53,5 +54,37 @@ internal class Program
         Console.WriteLine("\nMy objects:");
         foreach (var o in myObjects) Console.WriteLine(o);
 
+    }
+
+    static void Lab5a()
+    {
+        Console.WriteLine("LAB 5A\n");
+        var p1 = new Point(1, 2);
+        var p2 = new Point(3, 4);
+        var p3 = new Point(5, 6);
+        var r = new Rectangle(p1, p2);
+        Console.WriteLine(r); // (1, 2):(3, 4)
+        Console.WriteLine(r.Contains(p1)); // True
+        Console.WriteLine(r.Contains(p2)); // True
+        Console.WriteLine(r.Contains(p3)); // False
+        Console.WriteLine(r.Contains(new Point(2, 3))); // True
+        Console.WriteLine(r.Contains(new Point(0, 0))); // False
+        Console.WriteLine(r.Contains(new Point(5, 5))); // False
+
+        // Test moving
+        Console.WriteLine("\nMoving test:");
+        Console.WriteLine(p1);
+        Console.WriteLine(p1.Next(Direction.Up)); // (1, 3)
+        Console.WriteLine(p1.Next(Direction.Right)); // (2, 2)
+        Console.WriteLine(p1.Next(Direction.Down)); // (1, 1)
+        Console.WriteLine(p1.Next(Direction.Left)); // (0, 2)
+
+        // Test diagonal moving
+        Console.WriteLine("\nDiagonal moving test:");
+        Console.WriteLine(p1);
+        Console.WriteLine(p1.NextDiagonal(Direction.Up)); // (2, 3)
+        Console.WriteLine(p1.NextDiagonal(Direction.Right)); // (2, 1)
+        Console.WriteLine(p1.NextDiagonal(Direction.Down)); // (0, 1)
+        Console.WriteLine(p1.NextDiagonal(Direction.Left)); // (0, 1)
     }
 }

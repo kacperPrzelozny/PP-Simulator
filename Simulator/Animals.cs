@@ -7,7 +7,6 @@ namespace Simulator;
 public class Animals
 {
     private string _description = "Unknown";
-    private bool _descriptionInitialized = false;
     public string Description
     {
         get => _description;
