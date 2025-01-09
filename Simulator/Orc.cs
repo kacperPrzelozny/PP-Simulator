@@ -17,14 +17,13 @@ public class Orc : Creature
         Rage = rage;
         _huntCount = 0;
     }
-    public override void SayHi()
+    public override string Greeting()
     {
-        Console.WriteLine($"I am {Name}, a orc at level {Level} with rage {Rage}.");
+        return $"I am {Name}, a orc at level {Level} with rage {Rage}.";
     }
     public void Hunt()
     {
         _huntCount++;
-        Console.WriteLine($"{Name} is hunting.");
         if (_huntCount % 2 == 0)
         {
             Rage++;

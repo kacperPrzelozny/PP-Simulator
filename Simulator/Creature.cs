@@ -35,7 +35,7 @@ public abstract class Creature
 
     public Creature() { }
 
-    public abstract void SayHi();
+    public abstract string Greeting();
 
     public void Upgrade()
     {
@@ -44,22 +44,22 @@ public abstract class Creature
         this.level++;
     }
 
-    public void Go(Direction direction)
-    {
-        Console.WriteLine($"{name} goes {direction.ToString().ToLower()}.");
-    }
+    public string Go(Direction direction) => $"{direction.ToString().ToLower()}";
 
-    public void Go(Direction[] directions)
+    public string[] Go(Direction[] directions)
     {
-        foreach (Direction direction in directions)
+        var directionNames = new string[directions.Length];
+        for (int i = 0; i < directions.Length; i++)
         {
-            Go(direction);
+            directionNames[i] = Go(directions[i]);
         }
+
+        return directionNames;
     }
 
-    public void Go(string directions)
+    public string[] Go(string directions)
     {
-        Go(DirectionParser.Parse(directions));
+        return Go(DirectionParser.Parse(directions));
     }
 
     // static methods
