@@ -21,12 +21,13 @@ public abstract class Creature
 
     public abstract int Power { get; }
 
+    private Map? map;
     public Map? Map {
-        get => Map;
+        get => map;
         set {
-            if (Map == null)
+            if (map == null)
             {
-                Map = value;
+                map = value;
             }
         }
     }
@@ -93,9 +94,20 @@ public abstract class Creature
         }
     }
 
-    // static methods
     public override string ToString()
     {
         return $"{GetType().Name.ToUpper()}: {Info}";
+    }
+
+    // static methods
+
+    public static void AssignManyCreaturesToMap(Map map, List<Creature> creatures, List<Point> positions)
+    {
+        if (creatures.Count() != positions.Count()) { return; }
+
+        for (int i = 0; i < creatures.Count(); i++)
+        {
+            creatures[i].AssignToMap(map, positions[i]);
+        }
     }
 }

@@ -7,9 +7,7 @@ internal class Program
     static void Main(string[] args)
     {
         Console.WriteLine("Starting Simulator!\n");
-        Lab5a();
-        Console.WriteLine("\n");
-        Lab5b();
+        Lab7a();
     }
 
     static void Lab5a()
@@ -88,5 +86,67 @@ internal class Program
         Console.WriteLine($"Test moving out of map\nStart point: {p4}");
         nextPoint = map.Next(p4, Direction.Right);
         Console.WriteLine($"Next point in Right direction: {nextPoint}"); //Next point in Right direction: (6, 6)
+    }
+
+    public static void Lab7a()
+    {
+        SmallSquareMap map = new SmallSquareMap(7, 7);
+        var p1 = new Point(3, 3);
+        var p2 = new Point(4, 4);
+
+        var e = new Elf("Legolas", 5);
+        var o = new Orc("Grom", 3);
+
+        Simulation sim = new Simulation(map, new List<Creature> { e, o },
+            new List<Point> { p1, p2 }, "RrLl");
+
+        Console.WriteLine(sim.Map); // SmallSquareMap with size 7x7
+        Console.WriteLine(sim.CurrentCreature); // ELF: Legolas, level 5
+        Console.WriteLine(sim.CurrentCreature.Position); // (3, 3)
+        Console.WriteLine(e.Position);
+        Console.WriteLine(sim.CurrentMoveName); // R
+
+        sim.Turn();
+        Console.WriteLine(sim.CurrentCreature); // ORC: Grom, level 3
+        Console.WriteLine(sim.CurrentCreature.Position); // (4, 4)
+        Console.WriteLine(o.Position);
+        Console.WriteLine(sim.CurrentMoveName); // R
+
+        sim.Turn();
+        Console.WriteLine(sim.CurrentCreature); // ELF: Legolas, level 5
+        Console.WriteLine(sim.CurrentCreature.Position); // (4, 3)
+        Console.WriteLine(e.Position);
+        Console.WriteLine(sim.CurrentMoveName); // L
+
+        sim.Turn();
+        Console.WriteLine(sim.CurrentCreature); // ORC: Grom, level 3
+        Console.WriteLine(sim.CurrentCreature.Position); // (5, 4)
+        Console.WriteLine(o.Position);
+        Console.WriteLine(sim.CurrentMoveName); // L
+
+        sim.Turn();
+        Console.WriteLine(sim.CurrentCreature); // ELF: Legolas, level 5
+        Console.WriteLine(sim.CurrentCreature.Position); // (3, 3)
+        Console.WriteLine(e.Position);
+        Console.WriteLine(sim.Finished); // True
+
+        try
+        {
+            sim.Turn();
+        }
+        catch (InvalidOperationException ex)
+        {
+            Console.WriteLine(ex.Message); // Simulation is finished.
+        }
+
+        var creaturesAt = sim.Map.At(p1);
+        Console.WriteLine(creaturesAt.Count); // 1
+        Console.WriteLine(creaturesAt[0]); // ELF: Legolas, level 5
+        Console.WriteLine(creaturesAt[0].Position); // (3, 3)
+
+        creaturesAt = sim.Map.At(p2);
+        Console.WriteLine(creaturesAt.Count); // 1
+        Console.WriteLine(creaturesAt[0]); // ORC: Grom, level 3
+        Console.WriteLine(creaturesAt[0].Position); // (4, 4)
     }
 }
