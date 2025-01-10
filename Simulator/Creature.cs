@@ -5,6 +5,9 @@ public abstract class Creature
     // properties
 
     private string name = "Unknown";
+
+    public abstract string Symbol { get; }
+
     public string Name
     {
         get { return name; }

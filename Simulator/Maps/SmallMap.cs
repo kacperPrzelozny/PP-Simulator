@@ -54,6 +54,11 @@ public abstract class SmallMap : Map
 
     public override List<Creature> At(Point p)
     {
+        if (!creaturePositions.ContainsKey(p.ToString()))
+        {
+            return new List<Creature>();
+        }
+
         return creaturePositions[p.ToString()];
     }
 }

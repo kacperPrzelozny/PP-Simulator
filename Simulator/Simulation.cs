@@ -53,7 +53,7 @@ public class Simulation
     {
         get
         {
-            return $"{parsedMoves[currentTurn].ToString().ToUpper()}";
+            return !Finished ? $"{parsedMoves[currentTurn].ToString().ToUpper()}" : "Simulation finished";
         }
     }
 
