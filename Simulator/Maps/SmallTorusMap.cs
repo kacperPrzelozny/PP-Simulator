@@ -1,4 +1,6 @@
-﻿namespace Simulator.Maps;
+﻿using Simulator.Directions;
+
+namespace Simulator.Maps;
 
 public class SmallTorusMap : SmallMap
 {

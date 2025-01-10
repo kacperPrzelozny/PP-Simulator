@@ -1,6 +1,8 @@
-﻿using Simulator.Maps;
+﻿using Simulator.Directions;
+using Simulator.Maps;
+using Simulator.Validators;
 
-namespace Simulator;
+namespace Simulator.Creatures;
 
 public abstract class Creature : IMappable
 {
@@ -27,9 +29,11 @@ public abstract class Creature : IMappable
     public abstract int Power { get; }
 
     private Map? map;
-    public Map? Map {
+    public Map? Map
+    {
         get => map;
-        set {
+        set
+        {
             if (map == null)
             {
                 map = value;
@@ -67,16 +71,16 @@ public abstract class Creature : IMappable
 
     public void Upgrade()
     {
-        if (this.level == 10) { return; }
+        if (level == 10) { return; }
 
-        this.level++;
+        level++;
     }
 
     public void AssignToMap(Map map, Point position)
     {
         if (IsAssigned) { return; }
         if (!map.Exist(position)) { return; }
-        
+
         Map = map;
         Position = position;
         IsAssigned = true;

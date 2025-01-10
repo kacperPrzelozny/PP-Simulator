@@ -1,4 +1,5 @@
-﻿using Simulator;
+﻿using Simulator.Creatures;
+using Simulator.Directions;
 using Simulator.Maps;
 
 public class Simulation

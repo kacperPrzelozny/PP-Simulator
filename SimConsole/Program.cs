@@ -1,4 +1,6 @@
 ﻿using Simulator;
+using Simulator.Animals;
+using Simulator.Creatures;
 using Simulator.Maps;
 using System.Text;
 

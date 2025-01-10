@@ -1,4 +1,4 @@
-﻿namespace Simulator;
+﻿namespace Simulator.Shapes;
 public class Rectangle
 {
     public int X1 { get; }

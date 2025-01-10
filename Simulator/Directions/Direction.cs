@@ -1,4 +1,4 @@
-﻿namespace Simulator;
+﻿namespace Simulator.Directions;
 
 public enum Direction
 {

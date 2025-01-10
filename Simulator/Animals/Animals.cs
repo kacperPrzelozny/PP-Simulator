@@ -1,9 +1,11 @@
-﻿using Simulator.Maps;
+﻿using Simulator.Directions;
+using Simulator.Maps;
+using Simulator.Validators;
 using System.ComponentModel.DataAnnotations;
 using System.Reflection.Emit;
 using System.Xml.Linq;
 
-namespace Simulator;
+namespace Simulator.Animals;
 
 public class Animals : IMappable
 {
@@ -13,7 +15,7 @@ public class Animals : IMappable
         get => _description;
         init
         {
-            _description = Validator.Shortener(value, 1, 15);
+            _description = Validators.Validator.Shortener(value, 1, 15);
         }
     }
     public uint Size { get; set; } = 3;

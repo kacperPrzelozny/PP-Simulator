@@ -1,5 +1,5 @@
 ﻿using Simulator.Maps;
-using Simulator;
+using Simulator.Directions;
 
 namespace TestSimulator;
 

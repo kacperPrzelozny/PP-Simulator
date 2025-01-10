@@ -1,4 +1,4 @@
-﻿using Simulator;
+﻿using Simulator.Directions;
 namespace TestSimulator;
 public class PointTests
 {

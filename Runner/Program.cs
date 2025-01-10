@@ -1,4 +1,5 @@
-﻿using Simulator.Maps;
+﻿using Simulator.Directions;
+using Simulator.Maps;
 
 namespace Simulator;
 

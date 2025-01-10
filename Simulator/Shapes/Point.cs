@@ -1,4 +1,4 @@
-﻿using Simulator;
+﻿using Simulator.Directions;
 public readonly struct Point
 {
     public readonly int X, Y;

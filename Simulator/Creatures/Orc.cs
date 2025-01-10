@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using Simulator.Validators;
 
-namespace Simulator;
+namespace Simulator.Creatures;
 public class Orc : Creature
 {
     private int _rage;
@@ -8,7 +9,7 @@ public class Orc : Creature
     public int Rage
     {
         get => _rage;
-        set => _rage = Validator.Limiter(value, 0, 10);
+        set => _rage = Validators.Validator.Limiter(value, 0, 10);
     }
     public Orc() { }
     public Orc(string name, int level = 1, int rage = 1)

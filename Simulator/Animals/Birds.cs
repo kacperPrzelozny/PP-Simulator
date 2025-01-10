@@ -1,4 +1,6 @@
-﻿namespace Simulator;
+﻿using Simulator.Directions;
+
+namespace Simulator.Animals;
 public class Birds : Animals
 {
     public override string Symbol => CanFly ? "B" : "b";

@@ -1,4 +1,4 @@
-﻿using Simulator;
+﻿using Simulator.Directions;
 using Simulator.Maps;
 
 namespace TestSimulator;

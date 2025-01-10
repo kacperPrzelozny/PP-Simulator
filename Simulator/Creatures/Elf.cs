@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using Simulator.Validators;
 
-namespace Simulator;
+namespace Simulator.Creatures;
 public class Elf : Creature
 {
     private int _agility;
@@ -10,7 +11,7 @@ public class Elf : Creature
         get => _agility;
         private set
         {
-            _agility = Validator.Limiter(value, 0, 10);
+            _agility = Validators.Validator.Limiter(value, 0, 10);
         }
     }
     public Elf() { }

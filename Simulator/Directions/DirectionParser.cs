@@ -1,4 +1,4 @@
-﻿namespace Simulator;
+﻿namespace Simulator.Directions;
 
 public static class DirectionParser
 {

@@ -1,6 +1,6 @@
 ﻿using System.Globalization;
 
-namespace Simulator;
+namespace Simulator.Validators;
 public static class Validator
 {
     public static int Limiter(int value, int min, int max)
