@@ -1,4 +1,5 @@
 ﻿using Simulator;
+using Simulator.Shapes;
 namespace TestSimulator;
 public class RectangleTests
 {
