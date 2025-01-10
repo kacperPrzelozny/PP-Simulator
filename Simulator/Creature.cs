@@ -1,8 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.Design;
-using System.Reflection.Metadata.Ecma335;
-
-namespace Simulator;
+﻿namespace Simulator;
 
 public abstract class Creature
 {
@@ -25,10 +21,36 @@ public abstract class Creature
 
     public abstract int Power { get; }
 
+    public Map? Map {
+        get => Map;
+        set {
+            if (Map == null)
+            {
+                Map = value;
+            }
+        }
+    }
+
+    public Point? Position { get; private set; }
+
+    public bool IsAssigned;
+
+    // constructors
+
     public Creature(string name, int level = 1)
     {
         Name = name;
         Level = level;
+        IsAssigned = false;
+    }
+
+    public Creature(string name, int level, Map map, Point position)
+    {
+        Name = name;
+        Level = level;
+        Map = map;
+        Position = position;
+        IsAssigned = true;
     }
 
     // public methods
@@ -44,21 +66,31 @@ public abstract class Creature
         this.level++;
     }
 
-    public string Go(Direction direction) => $"{direction.ToString().ToLower()}";
-
-    public List<Direction> Go(List<Direction> directions)
+    public void AssignToMap(Map map, Point position)
     {
-        foreach (Direction direction in directions)
-        {
-            Go(direction);
-        }
+        if (IsAssigned) { return; }
+        if (!map.Exist(position)) { return; }
+        
+        Map = map;
+        Position = position;
+        IsAssigned = true;
 
-        return directions;
+        Map.Add(this, position);
     }
 
-    public List<Direction> Go(string directions)
+    public void Go(Direction direction)
     {
-        return Go(DirectionParser.Parse(directions));
+        if (Map == null) { return; }
+        if (Position == null) { return; }
+
+        Point currentPosition = new Point(Position.Value.X, Position.Value.Y);
+        Point next = Map.Next(currentPosition, direction);
+
+        if (Map.Exist(next))
+        {
+            Map.Move(this, currentPosition, next);
+            Position = next;
+        }
     }
 
     // static methods

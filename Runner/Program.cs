@@ -56,7 +56,7 @@ internal class Program
     public static void Lab5b()
     {
         // Test SmallSquareMap - size 6
-        SmallSquareMap map = new SmallSquareMap(7);
+        SmallSquareMap map = new SmallSquareMap(7, 7);
         Console.WriteLine(map); //SmallSquareMap with size 7x7
         // Test point exist in map
         Point p1 = new Point(0, 0);
