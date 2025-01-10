@@ -1,16 +1,13 @@
 ﻿namespace Simulator.Maps;
-public class SmallSquareMap : Map
+public class SmallSquareMap : SmallMap
 {
-    public int Size { get; }
-    public SmallSquareMap(int size)
+    public SmallSquareMap(int x, int y) : base(x, y)
     {
-        if (size < 5 || size > 20)
-            throw new ArgumentOutOfRangeException(nameof(size), "Size must be between 5 and 20.");
-        Size = size;
     }
+
     public override bool Exist(Point p)
     {
-        return p.X >= 0 && p.X < Size && p.Y >= 0 && p.Y < Size;
+        return p.X >= 0 && p.X < X && p.Y >= 0 && p.Y < Y;
     }
     public override Point Next(Point p, Direction d)
     {
@@ -28,6 +25,6 @@ public class SmallSquareMap : Map
     }
     public override string ToString()
     {
-        return $"SmallSquareMap with size {Size}x{Size}";
+        return $"SmallSquareMap with size {X}x{Y}";
     }
 }
