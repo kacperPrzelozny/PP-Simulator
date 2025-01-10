@@ -73,8 +73,8 @@ public class MapVisualiser
 
     private string[,] PrepareMap()
     {
-        int rows = Map.X;
-        int cols = Map.Y;
+        int rows = Map.Y;
+        int cols = Map.X;
 
         string[,] array = new string[rows, cols];
 
