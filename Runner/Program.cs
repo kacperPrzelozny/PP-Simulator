@@ -97,7 +97,7 @@ internal class Program
         var e = new Elf("Legolas", 5);
         var o = new Orc("Grom", 3);
 
-        Simulation sim = new Simulation(map, new List<Creature> { e, o },
+        Simulation sim = new Simulation(map, new List<IMappable> { e, o },
             new List<Point> { p1, p2 }, "RrLl");
 
         Console.WriteLine(sim.Map); // SmallSquareMap with size 7x7

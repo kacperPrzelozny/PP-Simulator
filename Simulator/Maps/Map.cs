@@ -1,5 +1,5 @@
 ﻿using Simulator;
-using System.Drawing;
+using Simulator.Maps;
 
 /// <summary>
 /// Map of points.
@@ -45,14 +45,14 @@ public abstract class Map
     /// </summary>
     /// <param name="c">Creature.</param>
     /// <param name="p">Initial point.</param>
-    public abstract void Add(Creature c, Point p);
+    public abstract void Add(IMappable c, Point p);
 
     /// <summary>
     /// Removes creature from the map and removes it from the list of creatures in the map.
     /// </summary>
     /// <param name="c">Creature.</param>
     /// <param name="p">Creature position.</param>
-    public abstract void Remove(Creature c, Point p);
+    public abstract void Remove(IMappable c, Point p);
 
     /// <summary>
     /// Moves creature from one point to another.
@@ -60,7 +60,7 @@ public abstract class Map
     /// <param name="c">Creature.</param>
     /// <param name="from">Starting position.</param>
     /// <param name="to">Target position.</param>
-    public abstract void Move(Creature c, Point from, Point to);
+    public abstract void Move(IMappable c, Point from, Point to);
     
     /// <summary>
     /// Checks creatures on x,y coordinates.
@@ -68,12 +68,12 @@ public abstract class Map
     /// <param name="x">X coordinate to check.</param>
     /// <param name="y">Y coordinate to check.</param>
     /// <returns>List of creatures on these coordinates on map</returns>
-    public abstract List<Creature> At(int x, int y);
+    public abstract List<IMappable> At(int x, int y);
 
     /// <summary>
     /// Checks creatures on point.
     /// </summary>
     /// <param name="p">Point to check.</param>
     /// <returns>List of creatures on this point on map</returns>
-    public abstract List<Creature> At(Point p);
+    public abstract List<IMappable> At(Point p);
 }

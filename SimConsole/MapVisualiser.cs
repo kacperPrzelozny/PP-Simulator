@@ -1,4 +1,5 @@
 ﻿using Simulator;
+using Simulator.Maps;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -81,7 +82,7 @@ public class MapVisualiser
         {
             for (int x = 0; x < cols; x++)
             {
-                List<Creature> creaturesAt = Map.At(x, y);
+                List<IMappable> creaturesAt = Map.At(x, y);
                 if (creaturesAt.Count == 0)
                 {
                     array[rows - 1 - y, x] = "";

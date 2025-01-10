@@ -1,6 +1,8 @@
-﻿namespace Simulator;
+﻿using Simulator.Maps;
 
-public abstract class Creature
+namespace Simulator;
+
+public abstract class Creature : IMappable
 {
     // properties
 
@@ -104,7 +106,7 @@ public abstract class Creature
 
     // static methods
 
-    public static void AssignManyCreaturesToMap(Map map, List<Creature> creatures, List<Point> positions)
+    public static void AssignManyCreaturesToMap(Map map, List<IMappable> creatures, List<Point> positions)
     {
         if (creatures.Count() != positions.Count()) { return; }
 

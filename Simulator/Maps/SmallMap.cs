@@ -2,7 +2,7 @@
 
 public abstract class SmallMap : Map
 {
-    private Dictionary<string, List<Creature>> creaturePositions;
+    private Dictionary<string, List<IMappable>> creaturePositions;
 
     public SmallMap(int x, int y): base(x, y)
     {
@@ -10,21 +10,21 @@ public abstract class SmallMap : Map
             throw new ArgumentOutOfRangeException("Both dimensions must be lower than 20");
         }
 
-        creaturePositions = new Dictionary<string, List<Creature>>();
+        creaturePositions = new Dictionary<string, List<IMappable>>();
     }
-    public override void Add(Creature c, Point p)
+    public override void Add(IMappable c, Point p)
     {
         if (!Exist(p))
             throw new ArgumentOutOfRangeException("Point is outside the map.");
         if (!creaturePositions.ContainsKey(p.ToString()))
         {
-            creaturePositions[p.ToString()] = new List<Creature>();
+            creaturePositions[p.ToString()] = new List<IMappable>();
         }
         creaturePositions[p.ToString()].Add(c);
         c.AssignToMap(this, p);
     }
 
-    public override void Remove(Creature c, Point p)
+    public override void Remove(IMappable c, Point p)
     {
         if (!creaturePositions.ContainsKey(p.ToString())) { return; }
 
@@ -36,7 +36,7 @@ public abstract class SmallMap : Map
 
     }
 
-    public override void Move(Creature c, Point from, Point to)
+    public override void Move(IMappable c, Point from, Point to)
     {
         if (!Exist(to))
         {
@@ -47,16 +47,16 @@ public abstract class SmallMap : Map
         Add(c, to);
     }
 
-    public override List<Creature> At(int x, int y)
+    public override List<IMappable> At(int x, int y)
     {
         return At(new Point(x, y));
     }
 
-    public override List<Creature> At(Point p)
+    public override List<IMappable> At(Point p)
     {
         if (!creaturePositions.ContainsKey(p.ToString()))
         {
-            return new List<Creature>();
+            return new List<IMappable>();
         }
 
         return creaturePositions[p.ToString()];
