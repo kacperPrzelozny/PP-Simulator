@@ -10,7 +10,7 @@ public class Birds : Animals
         get
         {
             string flyStatus = CanFly ? "fly+" : "fly-";
-            return $"{Description} ({flyStatus}) <{Size}>";
+            return $"{Description} ({flyStatus}) <{Size}> " + Position.ToString();
         }
     }
 

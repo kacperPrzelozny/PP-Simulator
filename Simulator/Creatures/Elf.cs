@@ -33,7 +33,7 @@ public class Elf : Creature
             Agility++;
         }
     }
-    public override string Info => $"{Name} [{Level}][{Agility}]";
+    public override string Info => $"{Name} [{Level}][{Agility}] " + Position.ToString();
     public override int Power => 8 * Level + 2 * Agility;
 
     public override string Symbol => "E";

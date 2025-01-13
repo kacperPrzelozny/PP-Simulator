@@ -1,0 +1,44 @@
+﻿@page
+@model SimWeb.Pages.SimulationModel
+@{
+	ViewData["Title"] = "Symulacja";
+}
+
+
+<div class="container mt-5 text-center">
+    <h1>Tura @Model.Turn</h1>
+    <div class="d-flex justify-content-center my-4">
+        <a asp-area="" asp-page="/Simulation" asp-route-turn="@(Model.Turn == 0 ? 0 : Model.Turn - 1)" class="@(Model.Turn == 0 ? "disabled" : "")">
+            <button class="btn btn-secondary me-2 @(Model.Turn == 0 ? "disabled" : "")">&larr;</button>
+        </a>
+        <a asp-area="" asp-page="/Simulation" asp-route-turn="@(Model.Turn == Model.MaxTurn ? Model.MaxTurn : Model.Turn + 1)" class="@(Model.Turn == Model.MaxTurn ? "disabled" : "")">
+            <button class="btn btn-secondary me-2 @(Model.Turn == Model.MaxTurn ? "disabled" : "")">&rarr;</button>
+        </a>
+    </div>
+
+    <div class="d-flex justify-content-center">
+        <div class="table-responsive">
+            <table class="table table-bordered border-dark" style="table-layout: fixed; width: auto;">
+                <tbody>
+                    @for (int i = Model.Y; i >= 0; i--)
+                    {
+                        <tr>
+                            @for (int j = 0; j < Model.X; j++)
+                            {
+                                Point point = new Point(j, i);
+                                char symbol = ' ';
+                                if (Model.Symbols.ContainsKey(point))
+								{
+                                    symbol = Model.Symbols[point];
+								}
+                                <td style="width: 75px; height: 75px; padding: 0; text-align: center; vertical-align: middle;" class="fw-bold">@symbol</td>
+                            }
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <p class="text-danger mt-3 fw-bold">@Model.MoveDescription</p>
+</div>
