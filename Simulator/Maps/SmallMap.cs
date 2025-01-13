@@ -2,7 +2,7 @@
 
 public abstract class SmallMap : Map
 {
-    private Dictionary<string, List<IMappable>> creaturePositions;
+    private Dictionary<Point, List<IMappable>> creaturePositions;
 
     public SmallMap(int x, int y): base(x, y)
     {
@@ -10,28 +10,28 @@ public abstract class SmallMap : Map
             throw new ArgumentOutOfRangeException("Both dimensions must be lower than 20");
         }
 
-        creaturePositions = new Dictionary<string, List<IMappable>>();
+        creaturePositions = new Dictionary<Point, List<IMappable>>();
     }
     public override void Add(IMappable c, Point p)
     {
         if (!Exist(p))
             throw new ArgumentOutOfRangeException("Point is outside the map.");
-        if (!creaturePositions.ContainsKey(p.ToString()))
+        if (!creaturePositions.ContainsKey(p))
         {
-            creaturePositions[p.ToString()] = new List<IMappable>();
+            creaturePositions[p] = new List<IMappable>();
         }
-        creaturePositions[p.ToString()].Add(c);
+        creaturePositions[p].Add(c);
         c.AssignToMap(this, p);
     }
 
     public override void Remove(IMappable c, Point p)
     {
-        if (!creaturePositions.ContainsKey(p.ToString())) { return; }
+        if (!creaturePositions.ContainsKey(p)) { return; }
 
-        creaturePositions[p.ToString()].Remove(c);
-        if (creaturePositions[p.ToString()].Count == 0)
+        creaturePositions[p].Remove(c);
+        if (creaturePositions[p].Count == 0)
         {
-            creaturePositions.Remove(p.ToString());
+            creaturePositions.Remove(p);
         }
 
     }
@@ -54,11 +54,36 @@ public abstract class SmallMap : Map
 
     public override List<IMappable> At(Point p)
     {
-        if (!creaturePositions.ContainsKey(p.ToString()))
+        if (!creaturePositions.ContainsKey(p))
         {
             return new List<IMappable>();
         }
 
-        return creaturePositions[p.ToString()];
+        return creaturePositions[p];
+    }
+
+    public override Dictionary<Point, char> GetCreaturesFromMap()
+    {
+        Dictionary<Point, char> symbols = new Dictionary<Point, char>();
+        foreach (var position in creaturePositions)
+        {
+            Point p = position.Key;
+            List<IMappable> creaturesAt = At(p);
+            char symbol;
+
+            if (creaturesAt.Count > 1)
+            {
+                symbol = 'X';
+            }
+            else if (creaturesAt.Count == 1)
+            {
+                symbol = creaturesAt.First().Symbol[0];
+            }
+            else continue;
+            
+            symbols.Add(p, symbol);
+        }
+
+        return symbols;
     }
 }

@@ -76,4 +76,10 @@ public abstract class Map
     /// <param name="p">Point to check.</param>
     /// <returns>List of creatures on this point on map</returns>
     public abstract List<IMappable> At(Point p);
+
+    /// <summary>
+    /// Getting dictionary from current state of creatures on map
+    /// </summary>
+    /// <returns>Dictionary with creatures on map with points as key</returns>
+    public abstract Dictionary<Point, char> GetCreaturesFromMap();
 }

@@ -11,7 +11,8 @@ internal class Program
     static void Main(string[] args)
     {
         //Console.OutputEncoding = Encoding.UTF8;
-        Lab8();
+        //Lab8();
+        Lab10a();
         //SmallSquareMap map = new(5, 5);
         //List<IMappable> creatures = [new Orc("Gorbag"), new Elf("Elandor")];
         //List<Point> points = [new(2, 2), new(3, 1)];
@@ -108,6 +109,40 @@ internal class Program
             Console.WriteLine($"{simulation.CurrentCreature}, {simulation.CurrentCreature.Position}");
             Console.WriteLine("Press any key to continue...");
             Console.ReadKey();
+        }
+    }
+
+    static void Lab10a()
+    {
+        SmallTorusMap map = new(8, 6);
+
+        List<IMappable> creatures = [
+            new Elf("Elandor"),
+            new Orc("Gorbag"),
+            new Animals() { Description = "Rabbits", Size = 20 },
+            new Birds() {Description = "Eagles", Size = 5, CanFly = true},
+            new Birds() {Description = "Ostriches", Size = 5, CanFly = false},
+        ];
+        List<Point> points = [
+            new(2, 2),
+            new(3, 1),
+            new(4, 5),
+            new(0, 1),
+            new(1, 0),
+        ];
+        string moves = "ruldlurdruldlur";
+
+        Simulation simulation = new(map, creatures, points, moves);
+        SimulationHistory history = new(simulation);
+        foreach (SimulationTurnLog turn in history.TurnLogs)
+        {
+            Console.WriteLine(turn.Mappable);
+            Console.WriteLine(turn.Move);
+            foreach (var position in turn.Symbols)
+            {
+                Console.WriteLine($"{position.Key.ToString()} => {position.Value}");
+            }
+
         }
     }
 }
